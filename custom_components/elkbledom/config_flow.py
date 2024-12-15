@@ -59,6 +59,7 @@ class BLEDOMFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         await self.async_set_unique_id(discovery_info.address)
         self._abort_if_unique_id_configured()
         device = DeviceData(self.hass, discovery_info)
+        LOGGER.debug("Debug: is supported: %s", device.is_supported)
         if device.is_supported:
             self._discovered_devices.append(device)
             return await self.async_step_bluetooth_confirm()

@@ -2,8 +2,8 @@
   "domain": "starrysky",
   "name": "Starry Sky",
   "bluetooth": [
-      { "local_name": "YX_LED*" },
-      { "local_name": "ELK-BLE*"}
+      { "local_name": "*LED*" },
+      { "service_uuid": "0000ffb1-0000-1000-8000-00805f9b34fb"}
     ],
   "codeowners": ["@nbucic"],
   "config_flow": true,

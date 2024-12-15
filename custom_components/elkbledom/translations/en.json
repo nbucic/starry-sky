@@ -6,14 +6,14 @@
                     "mac": "Bluetooth MAC address",
                     "name": "Name"
                 },
-                "title": "Pick a Elkbledom light. Make sure light in sight for validation."
+                "title": "Pick a Starry sky light. Make sure light in sight for validation."
             },
             "validate": {
                 "data": {
                     "retry": "Retry validate connection?",
                     "flicker": "Did the light blink?"
                 },
-                "title": "Validate Elkbledom connection"
+                "title": "Validate Starry sky connection"
             },
             "manual": {
                 "data": {
@@ -24,12 +24,12 @@
             }
         },
         "error": {
-            "connect": "Unable to connect to Elkbledom"
+            "connect": "Unable to connect to Starry sky"
         },
         "abort": {
-            "cannot_validate": "Unable to validate Elkbledom light",
-            "cannot_connect": "Unable to connect to Elkbledom",
-            "not_supported": "Elkbledom light not supported",
+            "cannot_validate": "Unable to validate Starry sky light",
+            "cannot_connect": "Unable to connect to Starry sky",
+            "not_supported": "Starry sky light not supported",
             "invalid_discovery_info": "Invalid discovery info in bluetooth device"
         }
     },
@@ -43,5 +43,5 @@
           }
         }
       },
-    "title": "Elkbledom"
+    "title": "Starry sky"
 }

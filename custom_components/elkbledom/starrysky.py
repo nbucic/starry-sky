@@ -117,8 +117,8 @@ def retry_bluetooth_connection_error(func: WrapFuncType) -> WrapFuncType:
 class DeviceData():
     def __init__(self, hass, discovery_info):
         self._discovery = discovery_info
-        self._supported = any(self._discovery.name.lower().startswith(option.lower()) for option in NAME_ARRAY)
-        print("Device supported? %s" % (self._supported))
+        self._supported = any(self._discovery.name.lower() in option.lower() for option in NAME_ARRAY)
+        LOGGER.debug("Device supported: %s", self._supported)
         self._address = self._discovery.address
         self._name = self._discovery.name
         self._rssi = self._discovery.rssi
@@ -223,7 +223,7 @@ class BLEDOMInstance:
     def _detect_model(self):
         x = 0
         for name in NAME_ARRAY:
-            if self._device.name.lower().startswith(name.lower()):
+            if name.lower() in self._device.name.lower():
                 self._turn_on_cmd = TURN_ON_CMD[x]
                 self._turn_off_cmd = TURN_OFF_CMD[x]
                 self._max_color_temp_kelvin = MAX_COLOR_TEMPS_K[x]

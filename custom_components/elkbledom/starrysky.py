@@ -63,7 +63,7 @@ LOGGER = logging.getLogger(__name__)
 # [be:59:7a:00:08:d5][LE]>
 
 # CHANGES ARRAYS TO DICT OR MODELDB OBJECT WITH ALL MODEL INFORMATION
-NAME_ARRAY = ["YX", "ELK-BLE"]
+NAME_ARRAY = ["YX", "ELK"]
 WRITE_CHARACTERISTIC_UUIDS = ["0000ffb1-0000-1000-8000-00805f9b34fb"]
 READ_CHARACTERISTIC_UUIDS  = ["0000ffb2-0000-1000-8000-00805f9b34fb"]
 TURN_ON_CMD = [[0xa5, 0xff, 0x01, 0x0c, 0x05, 0xff, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x12, 0x05, 0xff, 0x04, 0xff, 0x01, 0x05, 0x00, 0xaa]]
@@ -118,6 +118,7 @@ class DeviceData():
     def __init__(self, hass, discovery_info):
         self._discovery = discovery_info
         self._supported = any(self._discovery.name.lower().startswith(option.lower()) for option in NAME_ARRAY)
+        print("Device supported? %s" % (self._supported))
         self._address = self._discovery.address
         self._name = self._discovery.name
         self._rssi = self._discovery.rssi

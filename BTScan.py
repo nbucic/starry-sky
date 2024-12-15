@@ -28,10 +28,10 @@ class OperationType:
 
 class BleServicesAndChracteristicsChars:
     CLIENT_CHARACTERISTIC_CONFIG = "00002902-0000-1000-8000-00805f9b34fb"
-    BLE_SERVICES = ["00035b03-58e6-07dd-021a-08123a000300","49535343-FE7D-4AE5-8FA9-9FAFD205E455","6e400001-b5a3-f393-e0a9-e50e24dcca9e"]
+    BLE_SERVICES = ["0000fff0-0000-1000-8000-00805f9b34fb"]
     BLE_WRITE_CHARACTERISTICS = {"00035b03-58e6-07dd-021a-08123a000301","49535343-1E4D-4BD9-BA61-23C647249616","6e400002-b5a3-f393-e0a9-e50e24dcca9e"}
     BLE_READ_CHARACTERISTICS = {"00035b03-58e6-07dd-021a-08123a0003ff","49535343-1E4D-4BD9-BA61-23C647249616","6e400003-b5a3-f393-e0a9-e50e24dcca9e"}
-    DEVICE_NAME_CONTENT = "UTOPIC"
+    DEVICE_NAME_CONTENT = "YX_LED fiber light"
     
 class cDelegate(DefaultDelegate):
     def __init__(self):
@@ -56,6 +56,7 @@ class Discovery():
                 utdv = UtopicDevice(dev)
                 if utdv.getDevice() is not None:
                     self.utopicdevice.append(utdv)
+            print("Number of devices: %d" % (len(self.devices)))
         else:
             print("return device address")
         return self.utopicdevice
@@ -68,10 +69,12 @@ class UtopicDevice():
         self.readChar = None
         self.notChar = None
         for (adtype, desc, value) in device.getScanData():
-            print("  %s = %s" % (desc, value))
+            print(" -> [%s] %s = %s" % (adtype, desc, value))
             if value == BleServicesAndChracteristicsChars.DEVICE_NAME_CONTENT:
+                print("Found the device!")
                 self.utopicdevice = self
             if value in BleServicesAndChracteristicsChars.BLE_SERVICES:
+                print("Found the service!")
                 self.serviceuuid = value
 
     def getAddress(self):
@@ -134,8 +137,10 @@ class BLEMagic(DefaultDelegate):
             serviceuuid = utopicdevice.getServiceUUID()
             address = utopicdevice.getAddress()
             # address = "04:91:62:25:cb:6f"
-            print(address)
+            print("   Address: %s - Service: %s" % (address, serviceuuid))
             if serviceuuid in BleServicesAndChracteristicsChars.BLE_SERVICES:
+                print("We have a good service!")
+                print("Write characteristic: %d" % (utopicdevice.getWriteCharact()))
                 try:
                     self.periph = Peripheral(address.upper())
                     self.periph.withDelegate(self)
@@ -160,7 +165,7 @@ class BLEMagic(DefaultDelegate):
                             #state = self.kv2dict(charact.read().decode())
                             #print(state)
                             utopicdevice.setReadCharact(desc.handle)
-            subscribe_bytes = b'\x01\x00'
+            """ subscribe_bytes = b'\x01\x00'
             if utopicdevice.getReadCharact() is not None and utopicdevice.getWriteCharact() is not None:
                 response = self.periph.writeCharacteristic(utopicdevice.getNotifyCharact(), subscribe_bytes, withResponse=True)
                 print(response)
@@ -174,7 +179,7 @@ class BLEMagic(DefaultDelegate):
                     self.periph.waitForNotifications(1.0)
             else:
                 print("not read")
-            self.utopicdevices.append(utopicdevice)
+            self.utopicdevices.append(utopicdevice) """
     
     def kv2dict(kvstr, sep=";"):
         result = {}

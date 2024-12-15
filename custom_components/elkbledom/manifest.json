@@ -1,19 +1,17 @@
 {
-  "domain": "elkbledom",
-  "name": "ElkBLEDOM",
+  "domain": "starrysky",
+  "name": "Starry Sky",
   "bluetooth": [
-      { "local_name": "ELK-BULB*" },
-      { "local_name": "ELK-BLE*" },
-      { "local_name": "MELK*" },
-      { "local_name": "LEDBLE*" },
-      { "local_name": "ELK-LAMPL*" }
+      { "local_name": "YX_LED*" },
+      { "local_name": "ELK-BLE*"}
     ],
-  "codeowners": ["@dave-code-ruiz"],
+  "codeowners": ["@nbucic"],
   "config_flow": true,
   "dependencies": ["bluetooth"],
-  "documentation": "https://github.com/dave-code-ruiz/elkbledom",
+  "documentation": "https://github.com/nbucic/starry-sky",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/dave-code-ruiz/elkbledom/issues",
+  "issue_tracker": "https://github.com/nbucic/starry-sky/issues",
   "requirements": ["bleak-retry-connector>=3.6.0","bleak>=0.22.3"],
-  "version": "1.2.0"
+  "version": "0.0.1",
+  "loggers": ["custom_components/starrysky"]
 }

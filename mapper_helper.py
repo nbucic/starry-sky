@@ -17,7 +17,8 @@ from collections.abc import Callable
 import asyncio
 import logging
 
-address = "BE:16:83:00:16:21"
+#address = "BE:16:83:00:16:21"
+address = "21:0A:00:06:8E:E5"
 
 LOGGER = logging.getLogger(__name__)
 
@@ -68,7 +69,8 @@ async def send_packet(packet, client):
     except Exception as e:
         print(e)
         return
-    await client.write_gatt_char("0000fff3-0000-1000-8000-00805f9b34fb", data, False)
+    #await client.write_gatt_char("0000fff3-0000-1000-8000-00805f9b34fb", data, False)
+    await client.write_gatt_char("0000ffb1-0000-1000-8000-00805f9b34fb", data, False)
 
 
 async def main():
@@ -79,7 +81,10 @@ async def main():
     async with BleakClient(address) as client:
         for i in range(0x00,0x10):
             hex_val = f"{i:#0{4}x}"
-            val = "7e07038"+hex_val[3:]+"04ffff00ef"
+            #val = "7e07038"+hex_val[3:]+"04ffff00ef"
+            val = "a5ff010c05ff0000000b001205ff04ff010500aa"
+            print(hex_val)
+            
             await send_packet(val, client)    
             note = input("Note:")
             if note == "":

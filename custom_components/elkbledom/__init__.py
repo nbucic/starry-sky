@@ -6,17 +6,17 @@ from homeassistant.const import CONF_MAC, EVENT_HOMEASSISTANT_STOP
 from homeassistant.const import Platform
 
 from .const import DOMAIN, CONF_RESET, CONF_DELAY
-from .elkbledom import BLEDOMInstance
+from .starrysky import BLEDOMInstance
 import logging
 
 LOGGER = logging.getLogger(__name__)
 PLATFORMS: list[Platform] = [
     Platform.LIGHT,
-    Platform.NUMBER,
+    #Platform.NUMBER,
 ]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up ElkBLEDOM from a config entry."""
+    """Set up StarrySky from a config entry."""
     reset = entry.options.get(CONF_RESET, None) or entry.data.get(CONF_RESET, None)
     delay = entry.options.get(CONF_DELAY, None) or entry.data.get(CONF_DELAY, None)
     mac = entry.options.get(CONF_MAC, None) or entry.data.get(CONF_MAC, None)

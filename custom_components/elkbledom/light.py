@@ -4,7 +4,7 @@ import logging
 import voluptuous as vol
 from typing import Any, Optional, Tuple
 
-from .elkbledom import BLEDOMInstance
+from .starrysky import BLEDOMInstance
 from .const import DOMAIN, EFFECTS, EFFECTS_list
 
 from homeassistant.const import CONF_MAC
@@ -116,11 +116,11 @@ class BLEDOMLight(LightEntity):
         if ATTR_BRIGHTNESS in kwargs and kwargs[ATTR_BRIGHTNESS] != self.brightness and self.rgb_color != None:
             await self._instance.set_brightness(kwargs[ATTR_BRIGHTNESS])
 
-        if ATTR_COLOR_TEMP_KELVIN in kwargs:
+        """ if ATTR_COLOR_TEMP_KELVIN in kwargs:
             self._attr_color_mode = ColorMode.COLOR_TEMP
             if kwargs[ATTR_COLOR_TEMP_KELVIN] != self.color_temp:
                 self._attr_effect = None
-                await self._instance.set_color_temp_kelvin(kwargs[ATTR_COLOR_TEMP_KELVIN], None)
+                await self._instance.set_color_temp_kelvin(kwargs[ATTR_COLOR_TEMP_KELVIN], None) """
 
         if ATTR_WHITE in kwargs:
             self._attr_color_mode = ColorMode.WHITE

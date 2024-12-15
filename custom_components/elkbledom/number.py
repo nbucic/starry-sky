@@ -5,7 +5,7 @@ from homeassistant.components.number import (
     NumberEntityDescription,
 )
 
-from .elkbledom import BLEDOMInstance
+from .starrysky import BLEDOMInstance
 from .const import DOMAIN
 
 from homeassistant.helpers.entity import DeviceInfo

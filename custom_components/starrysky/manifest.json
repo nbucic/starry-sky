@@ -3,7 +3,7 @@
   "name": "Starry Sky",
   "bluetooth": [
       { "local_name": "YX_LED fiber light"},
-      { "local_name": "Samsung"},
+      { "local_name": "[TV] Samsung"},
       { "service_uuid": "0000ffb1-0000-1000-8000-00805f9b34fb"},
       { "manufacturer_id": "0x0A21"},
       { "manufacturer_id": "0x0075"}
@@ -15,6 +15,6 @@
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/nbucic/starry-sky/issues",
   "requirements": ["bleak-retry-connector>=3.6.0","bleak>=0.22.3"],
-  "version": "0.0.12",
+  "version": "0.0.13",
   "loggers": ["custom_components/starrysky"]
 }

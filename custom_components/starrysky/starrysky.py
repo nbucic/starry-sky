@@ -118,7 +118,9 @@ class DeviceData():
     def __init__(self, hass, discovery_info):
         self._discovery = discovery_info
         self._supported = any(self._discovery.name.lower() in option.lower() for option in NAME_ARRAY)
-        LOGGER.debug("Device supported: %s", self._supported)
+        LOGGER.debug("Device supported: %s. SELF DISCOVERED: %s", self._supported, self._discovery.name.lower())
+        for option in NAME_ARRAY:
+            LOGGER.debug("Found option: %s", option.lower())
         self._address = self._discovery.address
         self._name = self._discovery.name
         self._rssi = self._discovery.rssi

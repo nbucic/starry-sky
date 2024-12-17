@@ -117,7 +117,7 @@ def retry_bluetooth_connection_error(func: WrapFuncType) -> WrapFuncType:
 class DeviceData():
     def __init__(self, hass, discovery_info):
         self._discovery = discovery_info
-        self._supported = any(self._discovery.name.lower() in option.lower() for option in NAME_ARRAY)
+        self._supported = any(option.lower() in self._discovery.name.lower() for option in NAME_ARRAY)
         LOGGER.debug("Device supported: %s. SELF DISCOVERED: %s", self._supported, self._discovery.name.lower())
         for option in NAME_ARRAY:
             LOGGER.debug("Found option: %s", option.lower())
